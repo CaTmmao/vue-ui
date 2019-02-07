@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/CaTmmao/vue-ui/issues"
   },
-  "homepage": "https://github.com/CaTmmao/vue-ui#readme"
+  "homepage": "https://github.com/CaTmmao/vue-ui#readme",
+  "dependencies": {
+    "vue": "^2.6.3"
+  }
 }
