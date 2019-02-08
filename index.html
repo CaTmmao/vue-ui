@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=2.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>vue-ui</title>
     <style>
@@ -13,6 +13,7 @@
             box-sizing: border-box;
         }
 
+        /*:root 大部分情况代表 html 选择器; IE9以上都兼容*/
         :root {
             --button-height: 32px;
             --button-bg: #fff;
@@ -32,28 +33,6 @@
             margin: 50px;
         }
 
-        .v-button {
-            /* 使用scss变量  */
-            height: var(--button-height);
-            font-size: var(--font-size);
-            /* button 不要用width固定宽度 用padding制造间隙 */
-            padding: 0 1em;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            background: var(--button-bg);
-        }
-
-        .v-button:hover {
-            border-color: var(--border-color-hover);
-        }
-
-        .v-button:active {
-            background-color: var(--button-active-bg);
-        }
-
-        .v-button:focus {
-            outline: none;
-        }
     </style>
 </head>
 <body>
@@ -62,12 +41,7 @@
 <div id="app">
     <v-button></v-button>
 </div>
-<script src="./node_modules/vue/dist/vue.min.js"></script>
-<script src="./button.js"></script>
-<script>
-    new Vue({
-        el: '#app'
-    })
-</script>
+<!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
+<script src="./src/app.js"></script>
 </body>
 </html>
