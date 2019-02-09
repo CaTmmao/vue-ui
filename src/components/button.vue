@@ -1,10 +1,7 @@
 <template>
     <button class="v-button" :class="{[`icon-${iconPosition}`]: true}">
         <!-- 获取iconPosition的值，设置他的值为true，这样值就会被设置成class -->
-        <!--增加icon-->
-        <svg class="icon" v-if="icon"> <!-- 当icon 存在时才显示，避免使用者没有传入icon参数时还会出现这个标签 -->
-            <use :xlink:href=`#i-${icon}`></use> <!--xlink:href 前面一定要加冒号，代表是动态绑定-->
-        </svg>
+        <v-icon v-if="icon" :name="icon"></v-icon>
         <span class="text">
             <slot></slot>
         </span>
@@ -66,11 +63,5 @@
         }
     }
 
-    /*设置icon样式*/
-    .icon {
-        /*宽度和高度设置为和字体一样高*/
-        width: 1em;
-        height: 1em;
-    }
 
 </style>
