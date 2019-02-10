@@ -45,9 +45,11 @@
     <v-button icon="setting" :loading="true">  <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
         设置
     </v-button>
-    <v-button icon="setting">  <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
-        设置
-    </v-button>
+    <v-button-group>
+        <v-button icon="left">上一页</v-button>
+        <v-button>更多</v-button>
+        <v-button icon="right" icon-position="right">下一页</v-button>
+    </v-button-group>
     <v-button icon-position="right" icon="setting">icon在右边</v-button>
 </div>
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
