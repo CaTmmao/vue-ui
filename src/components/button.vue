@@ -2,6 +2,7 @@
     <button class="v-button" :class="{[`icon-${iconPosition}`]: true}">
         <!-- 获取iconPosition的值，设置他的值为true，这样值就会被设置成class -->
         <v-icon v-if="icon" :name="icon"></v-icon>
+        <v-icon class="loading" name="loading"></v-icon>
         <span class="text">
             <slot></slot>
         </span>
@@ -57,9 +58,22 @@
         }
 
         &.icon-right {
-            > .icon {
+            > .v-icon {
                 order: 2;
             }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            animation: spin infinite 1s linear;
         }
     }
 

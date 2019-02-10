@@ -1,5 +1,5 @@
 <template>
-    <svg class="icon">
+    <svg class="v-icon">
         <use :xlink:href=`#i-${name}`></use> <!--xlink:href 前面一定要加冒号，代表是动态绑定-->
     </svg>
 </template>
@@ -13,9 +13,10 @@
 
 <style scoped lang="scss">
     /*设置icon样式*/
-    .icon {
+    .v-icon {
         /*宽度和高度设置为和字体一样高*/
         width: 1em;
         height: 1em;
     }
+
 </style>
