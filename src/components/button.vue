@@ -1,8 +1,10 @@
 <template>
-    <button class="v-button" :class="{[`icon-${iconPosition}`]: true}">
+    <!--由于使用者直接给v-button标签添加的click事件不会生效，因此需要在button组件中给button添加一个click事件，当button被点击时，触发这个组件的click事件-->
+    <button class="v-button" @click="$emit('click')" :class="{[`icon-${iconPosition}`]: true}">
         <!-- 获取iconPosition的值，设置他的值为true，这样值就会被设置成class -->
-        <v-icon v-if="icon" :name="icon"></v-icon>
-        <v-icon class="loading" name="loading"></v-icon>
+        <v-icon v-if="icon && !loading" :name="icon"></v-icon>
+        <!--loading 效果 name参数默认是loading-->
+        <v-icon class="loading" v-if="loading" name="loading"></v-icon>
         <span class="text">
             <slot></slot>
         </span>
@@ -17,10 +19,19 @@
             icon: {},
             iconPosition: {
                 type: String,
-                default: 'left'
+                default: 'left',
+                validator(value) {
+                    // 值只能是 right / left， 否则报错
+                    return value === 'right' || value === 'left';
+                }
             },
-            validator(value) {
-                return value === 'right';
+            loading: {
+                type: Boolean,
+                default: false,
+                validator(value) {
+                    // 值只能是true / false ,否则报错
+                    return value === true || value === false
+                }
             }
         }
     }
@@ -63,6 +74,7 @@
             }
         }
 
+        /*loading icon 无限旋转效果*/
         @keyframes spin {
             0% {
                 transform: rotate(0deg);

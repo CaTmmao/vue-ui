@@ -6,5 +6,9 @@ import ICON from './components/icon' //引入icon组件
 Vue.component('v-button', Button)
 Vue.component('v-icon', ICON)
 new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        //传给index.html
+        loading: true
+    }
 })

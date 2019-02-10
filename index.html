@@ -40,7 +40,11 @@
 <script>
 </script>
 <div id="app">
-    <v-button>没有样式</v-button>
+    <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
+    <v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>
+    <v-button icon="setting" :loading="true">  <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
+        设置
+    </v-button>
     <v-button icon="setting">  <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
         设置
     </v-button>
