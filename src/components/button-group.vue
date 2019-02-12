@@ -7,7 +7,15 @@
 
 <script>
     export default {
-        name: "v-button-group"
+        name: "v-button-group",
+        mounted() {
+            // 循环v-button-group元素的子元素
+            for (let node of this.$el.children) {
+                if (node.nodeName !== 'BUTTON') {
+                    console.warn(`v-button-group里面只能包含v-button标签，你写的是${node.nodeName.toLowerCase()},可能造成css样式混乱`)
+                }
+            }
+        }
     }
 </script>
 
