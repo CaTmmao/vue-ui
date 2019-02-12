@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/CaTmmao/vue-ui#readme",
   "dependencies": {
-    "vue": "^3.6.3"
+    "vue": "^2.6.3",
+    "vue-hot-reload-api": "^2.3.2"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.5.2",
