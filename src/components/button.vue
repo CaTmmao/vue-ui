@@ -87,7 +87,13 @@
         .loading {
             animation: spin infinite 1s linear;
         }
-    }
 
+        /* 设置icon样式 */
+        .icon {
+            /*宽度和高度设置为和字体一样高*/
+            width: 1em;
+            height: 1em;
+        }
+    }
 
 </style>
