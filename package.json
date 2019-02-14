@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/CaTmmao/vue-ui#readme",
   "dependencies": {
+    "chai-spies": "^1.0.0",
     "vue": "^2.6.3",
     "vue-hot-reload-api": "^2.3.2"
   },
