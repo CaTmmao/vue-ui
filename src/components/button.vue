@@ -56,6 +56,10 @@
         align-items: center;
         justify-content: center;
 
+        .v-icon {
+            order: 1;
+        }
+
         &:hover {
             border-color: var(--border-color-hover);
         }
