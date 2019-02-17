@@ -12,9 +12,13 @@
 </template>
 
 <script>
+    import Icon from './icon'
     export default {
         name: "v-button",
         //icon:图标类型； position:图标位置；
+        components: {
+            'v-icon': Icon
+        },
         props: {
             icon: {},
             iconPosition: {
