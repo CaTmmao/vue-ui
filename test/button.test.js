@@ -34,7 +34,7 @@ describe( 'Button', () => {
         expect(useElements[0].getAttribute('xlink:href')).to.equal('#i-loading')
         vm.$destroy()
     })
-    it('icon 默认的 order 是 0', () => {
+    it('icon 默认的 order 是 1', () => {
         const div = document.createElement('div')
         document.body.appendChild(div)
         const Constructor = Vue.extend(Button)
@@ -44,7 +44,7 @@ describe( 'Button', () => {
             }
         }).$mount(div)
         const icon = vm.$el.querySelector('svg')
-        expect(getComputedStyle(icon).order).to.eq('0')
+        expect(getComputedStyle(icon).order).to.eq('1')
         vm.$el.remove()
         vm.$destroy()
     })
