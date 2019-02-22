@@ -41,17 +41,20 @@
 </script>
 <div id="app">
     <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
-    <v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>
-    <v-button icon="setting" :loading="loading" @click="loading = !loading">
+    <!--<v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>-->
+    <!--<v-button icon="setting" :loading="loading" @click="loading = !loading">-->
         <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
-        设置
-    </v-button>
-    <v-button-group>
-        <v-button icon="left">上一页</v-button>
-        <v-button>更多</v-button>
-        <v-button icon="right" icon-position="right">下一页</v-button>
-    </v-button-group>
-    <v-button icon-position="right" icon="setting">icon在右边</v-button>
+        <!--设置-->
+    <!--</v-button>-->
+    <!--<v-button-group>-->
+        <!--<v-button icon="left">上一页</v-button>-->
+        <!--<v-button>更多</v-button>-->
+        <!--<v-button icon="right" icon-position="right">下一页</v-button>-->
+    <!--</v-button-group>-->
+    <!--<v-button icon-position="right" icon="setting">icon在右边</v-button>-->
+    <v-input></v-input>
+    <!--不能写成这样，vue的自定义标签不能写成自闭合-->
+    <!--<v-input />-->
 </div>
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
 <script src="./src/app.js"></script>
