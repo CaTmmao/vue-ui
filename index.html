@@ -57,19 +57,21 @@
     <!--<v-button icon-position="right" icon="setting">icon在右边</v-button>-->
 
     <!--input 组件-->
-    <v-input content="张三"></v-input>
+    <!--<v-input content="张三"></v-input>-->
     <!--不能写成这样，vue的自定义标签不能写成自闭合-->
-    <v-input />
-    <v-input content="李四"></v-input>
+    <!--<v-input />-->
+    <!--<v-input content="李四"></v-input>-->
     <!--传入 disabled 参数可以通过下面两种方式-->
-    <v-input content="李四" disabled></v-input>
+    <!--<v-input content="李四" disabled></v-input>-->
     <!--用这种方式传的 true 是一个js变量-->
-    <v-input content="李四" :disabled="true"></v-input>
-    <!-- HTML 语法 传入的 true 是一个字符串-->
-    <v-input content="李四" disabled="true"></v-input>
+    <!--<v-input content="李四" :disabled="true"></v-input>-->
+     <!--HTML 语法 传入的 true 是一个字符串-->
+    <!--<v-input content="李四" disabled="true"></v-input>-->
     <!--和传入 disabled 时需要注意的一样-->
-    <v-input :readonly="true" content="只读"></v-input>
-    <v-input content="error状态" error="举例这是error状态"></v-input>
+    <!--<v-input :readonly="true" content="只读"></v-input>-->
+    <!--<v-input content="error状态" error="举例这是error状态"></v-input>-->
+    这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法
+    <v-input content="触发change事件" @changed="inputChange"></v-input>
 </div>
 
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->

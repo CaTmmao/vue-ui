@@ -1,7 +1,10 @@
 <template>
     <div class="wrapper">
         <!-- :class="{'error': error}" 的简写 如果有error 就添加error class -->
-        <input type="text" :value="content" :disabled="disabled" :readonly="readonly" :class="{error}">
+        <!-- 监听原生input change事件，当 原生input框 发生 change事件，触发 vue的input组件 的 changed 事件，并把浏览器给的关于input框的所有
+        相关信息（事件对象）传给下一个监听的人-->
+        <input type="text" :value="content" :disabled="disabled" :readonly="readonly" :class="{error}"
+        @change="$emit('changed', $event, 'hi')" >
         <template v-if="error">
             <icon name="error"></icon>
             <div class="error-message">{{error}}</div>

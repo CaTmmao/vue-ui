@@ -14,6 +14,11 @@ new Vue({
     data: {
         //传给index.html
         loading: true
+    },
+    methods: {
+        inputChange(event) {
+            console.log(event.target.value)
+        }
     }
 })
 
