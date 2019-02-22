@@ -40,22 +40,38 @@
 <script>
 </script>
 <div id="app">
+    <!--button 组件-->
     <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
     <!--<v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>-->
     <!--<v-button icon="setting" :loading="loading" @click="loading = !loading">-->
         <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
         <!--设置-->
     <!--</v-button>-->
+
+    <!--button-group 组件-->
     <!--<v-button-group>-->
         <!--<v-button icon="left">上一页</v-button>-->
         <!--<v-button>更多</v-button>-->
         <!--<v-button icon="right" icon-position="right">下一页</v-button>-->
     <!--</v-button-group>-->
     <!--<v-button icon-position="right" icon="setting">icon在右边</v-button>-->
-    <v-input></v-input>
+
+    <!--input 组件-->
+    <v-input content="张三"></v-input>
     <!--不能写成这样，vue的自定义标签不能写成自闭合-->
-    <!--<v-input />-->
+    <v-input />
+    <v-input content="李四"></v-input>
+    <!--传入 disabled 参数可以通过下面两种方式-->
+    <v-input content="李四" disabled></v-input>
+    <!--用这种方式传的 true 是一个js变量-->
+    <v-input content="李四" :disabled="true"></v-input>
+    <!-- HTML 语法 传入的 true 是一个字符串-->
+    <v-input content="李四" disabled="true"></v-input>
+    <!--和传入 disabled 时需要注意的一样-->
+    <v-input :readonly="true" content="只读"></v-input>
+    <v-input content="error状态" error="举例这是error状态"></v-input>
 </div>
+
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
 <script src="./src/app.js"></script>
 </body>
