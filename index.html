@@ -70,8 +70,9 @@
     <!--和传入 disabled 时需要注意的一样-->
     <!--<v-input :readonly="true" content="只读"></v-input>-->
     <!--<v-input content="error状态" error="举例这是error状态"></v-input>-->
-    这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法
-    <v-input content="触发change事件" @changed="inputChange"></v-input>
+    <!--这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法-->
+    <!--<v-input content="触发change事件" @changed="inputChange"></v-input>-->
+    <v-input content="触发change事件" @change="inputChange"></v-input>
 </div>
 
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
