@@ -13,7 +13,8 @@ new Vue({
     el: '#app',
     data: {
         //传给index.html
-        loading: true
+        loading: true,
+        message: 'hi'
     },
     methods: {
         inputChange(event) {

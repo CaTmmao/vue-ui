@@ -5,10 +5,10 @@
         相关信息（事件对象）传给下一个监听的人-->
         <!--@change="$emit('changed', $event, 'hi')"-->
         <input type="text" :value="content" :disabled="disabled" :readonly="readonly" :class="{error}"
-               @change="$emit('change', $event, 'hi')"
-               @input="$emit('input', $event)"
-               @focus="$emit('focus', $event)"
-               @blur="$emit('blur', $event)"
+               @change="$emit('change', $event.target.value)"
+               @input="$emit('input', $event.target.value)"
+               @focus="$emit('focus', $event.target.value)"
+               @blur="$emit('blur', $event.target.value)"
         >
         <template v-if="error">
             <icon name="error"></icon>
