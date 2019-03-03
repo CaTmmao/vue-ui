@@ -32,14 +32,23 @@
         #app {
             margin: 50px;
         }
-    </style>
-    <style>
+
+        .row {
+            display: flex;
+        }
     </style>
 </head>
 <body>
 <script>
 </script>
 <div id="app">
+    <!--网格系统组件-->
+    <!--左边 1/12 右边11/12-->
+    <v-row>
+        <v-col span="2"></v-col>
+        <v-col span="22"></v-col>
+    </v-row>
+
     <!--button 组件-->
     <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
     <!--<v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>-->
@@ -72,9 +81,9 @@
     <!--<v-input content="error状态" error="举例这是error状态"></v-input>-->
     <!--这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法-->
     <!--<v-input content="触发change事件" @changed="inputChange"></v-input>-->
-    <v-input content="触发change事件" @change="inputChange"></v-input>
-    <v-input v-model="message"></v-input>
-    <div>{{message}}</div>
+    <!--<v-input content="触发change事件" @change="inputChange"></v-input>-->
+    <!--<v-input v-model="message"></v-input>-->
+    <!--<div>{{message}}</div>-->
 
 </div>
 
