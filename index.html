@@ -31,10 +31,7 @@
 
         #app {
             margin: 50px;
-        }
-
-        .row {
-            display: flex;
+            border: 2px gold solid;
         }
     </style>
 </head>
@@ -44,9 +41,14 @@
 <div id="app">
     <!--网格系统组件-->
     <!--左边 1/12 右边11/12-->
-    <v-row>
-        <v-col span="2"></v-col>
-        <v-col span="22"></v-col>
+    <!--<v-row>-->
+        <!--<v-col span="2"></v-col>-->
+        <!--<v-col span="2" offset="2"></v-col>-->
+        <!--<v-col span="12" offset="5"></v-col>-->
+    <!--</v-row>-->
+    <v-row gutter="20">
+        <v-col></v-col>
+        <v-col></v-col>
     </v-row>
 
     <!--button 组件-->
