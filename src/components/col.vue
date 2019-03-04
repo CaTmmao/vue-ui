@@ -1,10 +1,6 @@
 <template>
-    <!--offset && offset-${offset} 里的 && 作用是：当 offset 的值在布尔值中为true时，才会增加这个 class，如果删掉 offset && 这部分，那么如果使用者没有传入
-    offset 参数时，会有 offset-undefined 这个 class -->
-    <div class="col" :style="{paddingLeft: gutter/2 + 'px', paddingRight: gutter/2 + 'px'}" :class="[span && `col-${span}`, offset && `offset-${offset}`]">
-        <div style="border: 1px green solid;height: 100%;">
+    <div class="col" :style="colStyle" :class="colClass">
             <slot></slot>
-        </div>
         <!--插槽：允许col组件内插入其他元素-->
     </div>
 </template>
@@ -23,7 +19,21 @@
         },
         data() {
             return {
-                gutter: 0
+                gutter: 0,
+            }
+        },
+        computed: {
+            colStyle() {
+                return {
+                    paddingLeft: this.gutter / 2 + 'px',
+                    paddingRight: this.gutter / 2 + 'px'
+                }
+            },
+            colClass() {
+                return [
+                    this.span && `col-${this.span}`,
+                    this.offset && `offset-${this.offset}`
+                ]
             }
         }
     }

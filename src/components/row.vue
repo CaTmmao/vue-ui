@@ -1,5 +1,5 @@
 <template>
-    <div class="row" :style="{marginLeft: -gutter/2 + 'px',marginRight: -gutter/2 + 'px'}">
+    <div class="row" :style="rowStyle">
         <slot></slot>
         <!--插槽：允许div里面插入其他元素 如 col组件 -->
     </div>
@@ -19,6 +19,13 @@
                 //vm代表每一个子元素本身 把row的gutter传递给他
                 vm.gutter = this.gutter
             })
+        },
+        computed: {
+            rowStyle() {
+                return {
+                    marginLeft: -this.gutter/2 + 'px',
+                    marginRight: -this.gutter/2 + 'px'}
+            }
         }
     }
 </script>
