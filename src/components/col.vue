@@ -23,6 +23,7 @@
             }
         },
         computed: {
+            //这个属性是根据gutter属性变的。这个不能写在data中，因为data只会在created的时候会读取一次，后续发生变更不会再动态读取
             colStyle() {
                 return {
                     paddingLeft: this.gutter / 2 + 'px',
@@ -42,7 +43,6 @@
 <style scoped lang="scss">
     .col {
         height: 100px;
-        width: 50%;
 
         /*计算每列宽度*/
         /*前缀是 col- */
