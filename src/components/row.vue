@@ -48,6 +48,8 @@
 <style scoped lang="scss">
     .row {
         display: flex;
+        //使子元素可以换行
+        flex-wrap: wrap;
 
         &.align-left {
             justify-content: flex-start;
