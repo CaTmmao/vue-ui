@@ -24,6 +24,7 @@
         name: 'v-col',
         props: {
             //占的比例
+            //该ui框架移动端优先，span & offset默认为移动端类型，因此框架使用者在传入这两个参数时会默认是给移动端设置的
             span: {
                 type: [Number, String]
             },
@@ -44,13 +45,19 @@
             }
         },
         methods: {
-            //根据传入的ipad/narrowpc/pc/widepc对象 动态绑定class
+            /* 根据传入的ipad/narrowpc/pc/widepc对象 动态绑定class
+            两个参数，第一个参数obj是一个对象,接收span和offset两个属性，如{span: 1, offset: 24}
+            第二个参数是对设备的描述，如 'pc', 'ipad', 如果是传入默认的phone移动端，那么不用传入参数str，默认为''空字符串 */
             createClasses(obj, str = '') {
+                //如果框架使用者没有传入该对象，返回一个空数组
                 if (!obj) {return []}
                 let array = []
-                //如: col-narrow-pc-1 str: narrow-pc-
+                /* 如: col-narrow-pc-1 str: narrow-pc- span:1
+                如果obj有span存在，那么数组中添加一个class */
                 if (obj.span) {array.push(`col-${str}${obj.span}`)}
+                 // 如果obj有offset存在，那么数组中添加一个class
                 if (obj.offset) {array.push(`col-${str}${obj.offset}`)}
+                // 把带有Class的数组return 回去
                 return array
             }
         },
@@ -66,13 +73,17 @@
             colClass() {
                 //在this中查找需要的属性
                 let {span, offset, ipad, narrowPc, pc, widePc} = this
-                let createClasses = this.createClasses
+                //从vue实例中寻找这个函数（methods中的方法可以在this中获取到）
+                let {createClasses} = this
+                //return 一个带有class的数组
                 return [
                     //span存在才会增加这个class
                     span && `col-${span}`,
+                    //offset存在返回这个class
                     offset && `offset-${offset}`,
-                    //如果有ipad参数 那么传入这个class 否则传入一个空数组
+                    //调用这个方法，传入一个对象，这个方法会返回一个class数组回来
                     ...createClasses({span, offset}),
+                    //调用这个对象时可传入一个str参数，如ipad-，代表这是针对ipad的
                     ...createClasses(ipad, 'ipad-'),
                     ...createClasses(narrowPc, 'narrow-pc-'),
                     ...createClasses(pc, 'pc-'),

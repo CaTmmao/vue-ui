@@ -30,29 +30,39 @@
         }
 
         #app {
-            margin: 50px;
-            border: 2px gold solid;
+            margin-top: 20px;
+        }
+
+        .demo {
+            height: 100px;
+            border: 1px green solid;
         }
     </style>
 </head>
 <body>
-<script>
-</script>
 <div id="app">
     <!--网格系统组件-->
-    <!--左边 1/12 右边11/12-->
-    <!--<v-row>-->
-        <!--<v-col span="2"></v-col>-->
-        <!--<v-col span="2" offset="2"></v-col>-->
-        <!--<v-col span="12" offset="5"></v-col>-->
+    <!--gutter是给每个col添加固定的间隔-->
+    <!--<v-row gutter="10">-->
+        <!--<v-col span="8">-->
+            <!--<div class="demo"></div>-->
+        <!--</v-col>-->
+        <!--<v-col span="8">-->
+            <!--<div class="demo"></div>-->
+        <!--</v-col>-->
+        <!--<v-col span="8">-->
+            <!--<div class="demo"></div>-->
+        <!--</v-col>-->
     <!--</v-row>-->
-    <v-row gutter="1" align="center">
-        <v-col>111111</v-col>
-        <v-col>22222</v-col>
-    </v-row>
-    <v-row gutter="1" align="left">
-        <v-col>33</v-col>
-        <v-col>4</v-col>
+
+    <v-row>
+        <!--span默认是移动端样式，要设置其他的设备如ipad,narrowPc,pc等，需要在v-col标签上使用冒号动态添加其他属性-->
+        <v-col span="24" :pc="{span: 12}">
+            <div class="demo"></div>
+        </v-col>
+        <v-col span="24" :pc="{span: 12}">
+            <div class="demo"></div>
+        </v-col>
     </v-row>
 
     <!--button 组件-->

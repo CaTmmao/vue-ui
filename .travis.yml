@@ -1,3 +1,4 @@
+#travisCI的配置文件
 language: node_js
 node_js:
   - "8"
