@@ -56,7 +56,7 @@
                 如果obj有span存在，那么数组中添加一个class */
                 if (obj.span) {array.push(`col-${str}${obj.span}`)}
                  // 如果obj有offset存在，那么数组中添加一个class
-                if (obj.offset) {array.push(`col-${str}${obj.offset}`)}
+                if (obj.offset) {array.push(`offset-${str}${obj.offset}`)}
                 // 把带有Class的数组return 回去
                 return array
             }
