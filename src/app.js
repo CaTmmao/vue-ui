@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import Button from './components/button' //引入button组件
-import Icon from './components/icon' //引入icon组件
-import ButtonGroup from './components/button-group'
-import Input from './components/input'
-import Row from './components/row'
-import Col from './components/col'
+import Button from './components/button/button' //引入button组件
+import Icon from './components/button/icon' //引入icon组件
+import ButtonGroup from './components/button/button-group'
+import Input from './components/input/input'
+import Row from './components/grid/row'
+import Col from './components/grid/col'
 
 //全局注册button, icon组件
 Vue.component('v-button', Button)

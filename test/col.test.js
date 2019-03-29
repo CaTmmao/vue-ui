@@ -1,7 +1,7 @@
 //引入chai.js的expect语法
 const expect = chai.expect;
 import Vue from 'vue'
-import Col from '../src/components/col'
+import Col from '../src/components/grid/col'
 
 describe('Col', () => {
     it('存在', () => {

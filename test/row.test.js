@@ -1,9 +1,9 @@
 //引入chai.js的expect语法
 const expect = chai.expect;
 import Vue from 'vue'
-import Row from '../src/components/row'
+import Row from '../src/components/grid/row'
 //虽然这是row的单元测试，由于row组件中的一些属性会影响col组件的样式，因此也需要引入col组件以通
-import Col from '../src/components/col'
+import Col from '../src/components/grid/col'
 
 describe('Row', () => {
     it('存在', () => {

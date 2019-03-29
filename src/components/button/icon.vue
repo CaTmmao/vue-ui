@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import '../../svg'
+    import '../../../svg'
     export default {
         name: "v-icon",
         props: ['name'] //接收一个name参数，参数的值是需要使用的icon类型的名字，如 setting

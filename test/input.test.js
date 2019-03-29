@@ -2,7 +2,7 @@
 const expect = chai.expect
 import Vue from 'vue'
 //引入 input 组件
-import Input from '../src/components/input'
+import Input from '../src/components/input/input'
 
 //describe 和 it 是mocha 的语法，会自动引入，不用我们管
 describe('Input', () => {
