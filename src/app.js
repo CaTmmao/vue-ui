@@ -5,8 +5,19 @@ import ButtonGroup from './components/button/button-group'
 import Input from './components/input/input'
 import Row from './components/grid/row'
 import Col from './components/grid/col'
+import Layout from './components/layout/layout'
+import Header from './components/layout/header'
+import Footer from './components/layout/footer'
+import Sider from './components/layout/sider'
+import Content from './components/layout/content'
 
-//全局注册button, icon组件
+
+//全局注册button, icon等组件
+Vue.component('v-layout', Layout)
+Vue.component('v-header', Header)
+Vue.component('v-footer', Footer)
+Vue.component('v-sider', Sider)
+Vue.component('v-content', Content)
 Vue.component('v-button', Button)
 Vue.component('v-icon', Icon)
 Vue.component('v-button-group', ButtonGroup)
