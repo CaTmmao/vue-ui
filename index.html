@@ -29,37 +29,20 @@
             font-size: var(--font-size);
         }
 
-        .layout {
-            height: 100vh;
-        }
-
-        .sider {
-            width: 500px;
-            background: #666;
-        }
-
-        .header {
-            height: 100px;
-            background: #999999;
-        }
-        
-        .footer {
-            height: 100px;
-            background-color: #888;
-        }
     </style>
 </head>
 <body>
 <div id="app">
-    <!--layout布局组件-->
-    <v-layout>
-        <v-sider>sider</v-sider>
-        <v-layout>
-            <v-header>header</v-header>
-            <v-content>content</v-content>
-            <v-footer>footer</v-footer>
-        </v-layout>
-    </v-layout>
+    <button @click="showToast">点击弹出toast</button>
+    <!--&lt;!&ndash;layout布局组件&ndash;&gt;-->
+    <!--<v-layout>-->
+        <!--<v-sider>sider</v-sider>-->
+        <!--<v-layout>-->
+            <!--<v-header>header</v-header>-->
+            <!--<v-content>content</v-content>-->
+            <!--<v-footer>footer</v-footer>-->
+        <!--</v-layout>-->
+    <!--</v-layout>-->
 
     <!--网格系统组件-->
     <!--gutter是给每个col添加固定的间隔-->
@@ -75,15 +58,15 @@
         <!--</v-col>-->
     <!--</v-row>-->
 
-    <v-row>
-        <!--span默认是移动端样式，要设置其他的设备如ipad,narrowPc,pc等，需要在v-col标签上使用冒号动态添加其他属性-->
-        <v-col span="24" :pc="{span: 12}">
-            <div class="demo"></div>
-        </v-col>
-        <v-col span="24" :pc="{span: 12}">
-            <div class="demo"></div>
-        </v-col>
-    </v-row>
+    <!--<v-row>-->
+        <!--&lt;!&ndash;span默认是移动端样式，要设置其他的设备如ipad,narrowPc,pc等，需要在v-col标签上使用冒号动态添加其他属性&ndash;&gt;-->
+        <!--<v-col span="24" :pc="{span: 12}">-->
+            <!--<div class="demo"></div>-->
+        <!--</v-col>-->
+        <!--<v-col span="24" :pc="{span: 12}">-->
+            <!--<div class="demo"></div>-->
+        <!--</v-col>-->
+    <!--</v-row>-->
 
     <!--button 组件-->
     <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->

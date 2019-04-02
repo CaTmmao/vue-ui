@@ -10,7 +10,10 @@ import Header from './components/layout/header'
 import Footer from './components/layout/footer'
 import Sider from './components/layout/sider'
 import Content from './components/layout/content'
+import Plugin from './components/plugin'
 
+//通过Vue.use执行plugin里的install方法
+Vue.use(Plugin)
 
 //全局注册button, icon等组件
 Vue.component('v-layout', Layout)
@@ -24,6 +27,7 @@ Vue.component('v-button-group', ButtonGroup)
 Vue.component('v-input', Input)
 Vue.component('v-row', Row)
 Vue.component('v-col', Col)
+
 new Vue({
     el: '#app',
     data: {
@@ -34,6 +38,9 @@ new Vue({
     methods: {
         inputChange(event) {
             console.log(event.target.value)
+        },
+        showToast() {
+            this.$toast('按钮已被点击')
         }
     }
 })
