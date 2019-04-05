@@ -14,7 +14,6 @@ export default {
         第一个参数是需要弹出的内容，第二个参数是一个对象，对象的属性是toast组件中props对象中的属性*/
         Vue.prototype.$toast = function(message, toastOptions) {
             //如果toast已经存在，就关闭该toast
-            console.log(currentToast);
             if (currentToast) {
                 currentToast.close()
             }
