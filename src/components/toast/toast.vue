@@ -1,23 +1,25 @@
 <template>
-    <div class="toast" ref="toast" :class="positionClass">
-        <div class="message">
-            <!--slot标签里传入想要弹出的内容 slot标签不能用v-html 如果用户想让传入的内容以HTML的方式渲染，那么就传入
-            enableHTML参数为true-->
-            <slot v-if="!enableHTML"></slot>
-            <!-- 如果用户想把弹出的内容以HTML方式显示就传入enableHTML:true
-            在plugin.js中，用户传入的message数组被传入了toast组件的$slots.default中，所以这里当作
-                 HTML渲染时，值取的是this(toast组件实例)中$slots.default的内容-->
-            <div v-else v-html="this.$slots.default"></div>
-        </div>
+    <div class="wrapper" :class="positionClass">
+        <div class="toast" ref="toast">
+            <div class="message">
+                <!--slot标签里传入想要弹出的内容 slot标签不能用v-html 如果用户想让传入的内容以HTML的方式渲染，那么就传入
+                enableHTML参数为true-->
+                <slot v-if="!enableHTML"></slot>
+                <!-- 如果用户想把弹出的内容以HTML方式显示就传入enableHTML:true
+                在plugin.js中，用户传入的message数组被传入了toast组件的$slots.default中，所以这里当作
+                     HTML渲染时，值取的是this(toast组件实例)中$slots.default的内容-->
+                <div v-else v-html="this.$slots.default"></div>
+            </div>
 
-        <!--竖线-->
-        <div class="line" ref="line"></div>
+            <!--竖线-->
+            <div class="line" ref="line"></div>
 
-        <!--关闭按钮-->
-        <span v-if="closeButton" class="close" @click="clickCloseButton">
+            <!--关闭按钮-->
+            <span v-if="closeButton" class="close" @click="clickCloseButton">
             <!--关闭按钮的内容，默认是 [关闭]-->
             {{closeButton.text}}
         </span>
+        </div>
     </div>
 </template>
 
@@ -139,6 +141,71 @@
     $font-size: 14px;
     $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, .75);
+
+    //出现时的动画
+    //position-bottom
+    @keyframes slide-down-in {
+        0% {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    //position-bottom
+    @keyframes slide-up-in {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    //position-middle
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    //专门用来做居中
+    .wrapper {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &.position-top {
+            top: 0;
+            .toast {
+                animation: slide-down-in .3s;
+            }
+        }
+
+        &.position-bottom {
+            bottom: 0;
+            .toast {
+                animation: slide-up-in .3s;
+            }
+        }
+
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+            .toast {
+                animation: fade-in .3s;
+            }
+        }
+    }
+
     .toast {
         background: $toast-bg;
         border-radius: 4px;
@@ -151,22 +218,6 @@
         display: flex;
         align-items: center;
         line-height: 1.8;
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-
-        &.position-top {
-            top: 10px;
-        }
-
-        &.position-bottom {
-            bottom: 10px;
-        }
-
-        &.position-middle {
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
 
         .message {
             padding: 7px 0;
