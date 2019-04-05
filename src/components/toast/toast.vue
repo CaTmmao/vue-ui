@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="toast">
+    <div class="toast" ref="toast" :class="positionClass">
         <div class="message">
             <!--slot标签里传入想要弹出的内容 slot标签不能用v-html 如果用户想让传入的内容以HTML的方式渲染，那么就传入
             enableHTML参数为true-->
@@ -30,6 +30,15 @@
     export default {
         name: 'v-toast',
         props: {
+            //显示的位置
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    //验证value是否是该数组里的值 >=0说明存在
+                    return ['top', 'middle', 'bottom'].indexOf(value) >= 0
+                }
+            },
             //自动关闭
             autoClose: {
                 type: Boolean,
@@ -70,6 +79,12 @@
 
             //调用自动关闭函数
             this.autoCloseFn()
+        },
+        computed: {
+            //返回一个class 用来给不同position的toast设置样式
+            positionClass() {
+                return [`position-${this.position}`]
+            }
         },
         methods: {
             //自动关闭函数
@@ -131,9 +146,21 @@
         align-items: center;
         line-height: 1.8;
         position: fixed;
-        top: 10px;
         left: 50%;
         transform: translateX(-50%);
+
+        &.position-top {
+            top: 10px;
+        }
+
+        &.position-bottom {
+            bottom: 10px;
+        }
+
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
 
         .message {
             padding: 7px 0;

@@ -42,14 +42,8 @@ new Vue({
         showToast() {
             /* 用户使用时通过this.$toast使用 第一个参数是message，代表需要弹出的内容，第二个参数是一个对象，
              可在对象中的传入的属性是其他所有toast props可接收的参数，如 enableHTML,closeButton等*/
-            this.$toast('asssssssssssssssss的水水水水水水水水水水水水水水水水水水水水', {
-                //传入关闭按钮
-                closeButton: {
-                    text: '关闭',
-                    callback() {
-                        console.log('a')
-                    }
-                },
+            this.$toast('test', {
+                position: 'middle'
             })
         }
     }
