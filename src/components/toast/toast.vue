@@ -100,6 +100,12 @@
             close() {
                 //把元素从页面中移除 这句一定要写 destroy并不会把元素从页面中删掉
                 this.$el.remove()
+                /* 触发Close事件，plugin.js文件中会订阅该事件
+                如果toast在被第二个创建前已经在页面上被关闭（不管是手动还是自动），就将plugin.js中的currentToast设置为null，
+                 因为plugin.js中的currentToast不会自动变成null，如果再次点击按钮创建toast的时候，
+                 还是会因为currentToast为true（具体看里面的if判断语句）而再次调用toast组件中的close函数，因此这么做
+                 是为了减少多余的函数调用 */
+                this.$emit('Close')
                 //销毁组件
                 this.$destroy()
             },
