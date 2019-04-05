@@ -15,7 +15,7 @@
             <div class="line" ref="line"></div>
 
             <!--关闭按钮-->
-            <span v-if="closeButton" class="close" @click="clickCloseButton">
+            <span v-if="closeButton.text" class="close" @click="clickCloseButton">
             <!--关闭按钮的内容，默认是 [关闭]-->
             {{closeButton.text}}
         </span>
@@ -44,7 +44,7 @@
             //自动关闭
             autoClose: {
                 type: Boolean,
-                default: true
+                default: false
             },
             //自动关闭延迟时间
             autoCloseDelay: {
@@ -59,7 +59,7 @@
                 default() {
                     return {
                         //关闭按钮默认的文字为[关闭]
-                        text: '关闭',
+                        text: '',
                         //回调函数默认没有，如果用户需要在按钮关闭完成后执行回调，就传入一个callback参数
                         callback: undefined
                     }
@@ -92,7 +92,7 @@
             //自动关闭函数
             autoCloseFn() {
                 //当 autoClose 为 true，同时不存在关闭按钮才执行
-                if (this.autoClose && !this.closeButton) {
+                if (this.autoClose && !this.closeButton.text) {
                     setTimeout(() => {
                         this.close()
                     }, this.autoCloseDelay * 1000)
