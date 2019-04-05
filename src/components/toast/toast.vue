@@ -143,7 +143,7 @@
     $toast-bg: rgba(0, 0, 0, .75);
 
     //出现时的动画
-    //position-bottom
+    //position-top
     @keyframes slide-down-in {
         0% {
             opacity: 0;
