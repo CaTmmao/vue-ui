@@ -187,6 +187,8 @@
             top: 0;
             .toast {
                 animation: slide-down-in .3s;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
             }
         }
 
@@ -194,6 +196,8 @@
             bottom: 0;
             .toast {
                 animation: slide-up-in .3s;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
 
