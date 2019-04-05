@@ -44,7 +44,7 @@
             //自动关闭
             autoClose: {
                 type: Boolean,
-                default: false
+                default: true
             },
             //自动关闭延迟时间
             autoCloseDelay: {
