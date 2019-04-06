@@ -11,12 +11,22 @@ import Footer from './components/layout/footer'
 import Sider from './components/layout/sider'
 import Content from './components/layout/content'
 import Plugin from './components/plugin'
+import Tabs from './components/tabs/tabs'
+import TabsItem from './components/tabs/tabs-item'
+import TabsBody from './components/tabs/tabs-body'
+import TabsHead from './components/tabs/tabs-head'
+import TabsPane from './components/tabs/tabs-pane'
 
 //通过Vue.use执行plugin里的install方法
 Vue.use(Plugin)
 
 //全局注册button, icon等组件
 Vue.component('v-layout', Layout)
+Vue.component('v-tabs', Tabs)
+Vue.component('v-tabs-item', TabsItem)
+Vue.component('v-tabs-body', TabsBody)
+Vue.component('v-tabs-head', TabsHead)
+Vue.component('v-tabs-pane', TabsPane)
 Vue.component('v-header', Header)
 Vue.component('v-footer', Footer)
 Vue.component('v-sider', Sider)
@@ -33,7 +43,8 @@ new Vue({
     data: {
         //传给index.html
         loading: true,
-        message: 'hi'
+        message: 'hi',
+        selectedTab: 'sports'
     },
     methods: {
         inputChange(event) {
@@ -43,7 +54,7 @@ new Vue({
             /* 用户使用时通过this.$toast使用 第一个参数是message，代表需要弹出的内容，第二个参数是一个对象，
              可在对象中的传入的属性是其他所有toast props可接收的参数，如 enableHTML,closeButton等*/
             this.$toast('test', {
-                position: 'middle'
+                position: 'top'
             })
         }
     }
