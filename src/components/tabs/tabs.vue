@@ -37,7 +37,7 @@
         },
         //在mounted阶段该组件的所有子组件已经完成挂载
         mounted() {
-            //触发事件，传入当前tab，tabs-item和tabs-pane监听，是谁就active谁
+            //触发事件，传入当前tab的name，tabs-item和tabs-pane监听，是谁就active谁
             this.eventBus.$emit('update:selected', this.selected)
         },
         /*只要在provide中创建了事件中心，那么该组件的所有子孙都可以访问到eventBus，provide是唯一一个跨组件都可以调用

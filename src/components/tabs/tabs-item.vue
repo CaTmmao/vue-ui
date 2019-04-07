@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="emitSelected">
+    <div class="tabs-item" @click="emitSelected" :class="itemClass">
         <slot></slot>
     </div>
 </template>
@@ -9,7 +9,16 @@
         name: 'v-tabs-item',
         data () {
             return {
+                //当前tab是否是active状态
                 active: false
+            }
+        },
+        computed: {
+            itemClass() {
+                return {
+                    //this.active为true时，就应用active为class
+                    active: this.active
+                }
             }
         },
         //tabs组件中用provide选项提供了eventBus，其他子孙组件需要用inject注入eventBus
@@ -28,11 +37,8 @@
         },
         created() {
             this.eventBus.$on('update:selected', (name) => {
-                if (name === this.name) {
-                    console.log(`我是${this.name}，active`)
-                } else {
-                    console.log(`我是${this.name}`)
-                }
+                //当name就是当前tab的name时，设置这个tab为active状态
+                this.active = name === this.name
             })
         },
         methods: {
@@ -46,5 +52,9 @@
 <style scoped lang="scss">
     .tabs-item {
         padding: 0 2em;
+
+        &.active {
+            background: red;
+        }
     }
 </style>
