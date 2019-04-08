@@ -53,6 +53,7 @@
         .actions-wrapper {
             justify-self: flex-end;
             margin-left: auto;
+            padding: 1em;
         }
     }
 </style>
