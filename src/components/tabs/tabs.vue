@@ -40,20 +40,26 @@
         methods: {
             //首次渲染tabs组件时
             emitUpdateSelected () {
+/*                如果用户没有在tabs组件内传入任何子组件，那么this.$children.length就是0,因为像div这些子元素并不会
+                被this.$children检测到*/
+                if (this.$children.length === 0) {
+                    throw new Error('tabs组件内应该有tabs-head和tabs-body组件')
+                }
+
                 // 循环该组件实例的子组件（this.$children返回的是数组因此可以用forEach循环）
-                this.$children.forEach((vm) => {
-                    // 如果子组件的name是v-tabs-head，说明该组件是tabs-head组件
-                    if (vm.$options.name === 'v-tabs-head') {
-                        // 循环tabs-head组件的子组件（每一个都是一个tab组件:tabs-item）
-                        vm.$children.forEach((tab) => {
-                            // 如果this.selected(active的tab) === 当前循环到的tab组件的name，说明该tab组件正式当前active的tab组件
-                            if (this.selected === tab.name) {
-                                // 触发事件，传入当前active的name和tab组件实例
-                                this.eventBus.$emit('update:selected', this.selected, tab)
-                            }
-                        })
-                    }
-                })
+                    this.$children.forEach((vm) => {
+                        // 如果子组件的name是v-tabs-head，说明该组件是tabs-head组件
+                        if (vm.$options.name === 'v-tabs-head') {
+                            // 循环tabs-head组件的子组件（每一个都是一个tab组件:tabs-item）
+                            vm.$children.forEach((tab) => {
+                                // 如果this.selected(active的tab) === 当前循环到的tab组件的name，说明该tab组件正式当前active的tab组件
+                                if (this.selected === tab.name) {
+                                    // 触发事件，传入当前active的name和tab组件实例
+                                    this.eventBus.$emit('update:selected', this.selected, tab)
+                                }
+                            })
+                        }
+                    })
             }
         },
         /*只要在provide中创建了事件中心，那么该组件的所有子孙都可以访问到eventBus，provide是唯一一个跨组件都可以调用
