@@ -7,10 +7,6 @@
 <script>
     export default {
         name: 'v-tabs-body',
-        mounted() {
-            this.eventBus.$on('update:selected', (name) => {
-            })
-        },
         //tabs组件中用provide选项提供了eventBus，其他子孙组件需要用inject注入eventBus
         inject: ['eventBus']
     }

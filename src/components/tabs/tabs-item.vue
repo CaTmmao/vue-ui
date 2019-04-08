@@ -37,18 +37,24 @@
             }
         },
         created() {
-            if (this.eventBus) {
-                this.eventBus.$on('update:selected', (name) => {
-                    //当name就是当前tab的name时，设置这个tab为active状态
-                    this.active = name === this.name
-                })
-            }
+            // 监听update:selected事件
+            this.watchSelected()
         },
         methods: {
+            // 触发update:selected事件
             emitSelected() {
                 //如果该tab是disabled状态，不进行后续触发事件
                 if (this.disabled) return
-                this.eventBus.$emit('update:selected', this.name, this)
+                this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
+            },
+            // 监听update:selected事件
+            watchSelected () {
+                if (this.eventBus) {
+                    this.eventBus.$on('update:selected', (name) => {
+                        //当name就是当前tab的name时，设置这个tab为active状态
+                        this.active = name === this.name
+                    })
+                }
             }
         }
     }
