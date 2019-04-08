@@ -43,7 +43,7 @@
         },
         methods: {
             emitSelected() {
-                this.eventBus.$emit('update:selected', this.name)
+                this.eventBus.$emit('update:selected', this.name, this)
             }
         }
     }
@@ -51,10 +51,15 @@
 
 <style scoped lang="scss">
     .tabs-item {
-        padding: 0 2em;
+        cursor: pointer;
+        padding: 0 1em;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
         &.active {
-            background: red;
+            color: #409eff;
+            font-weight: bold;
         }
     }
 </style>

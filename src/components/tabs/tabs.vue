@@ -31,14 +31,30 @@
                 eventBus: new Vue()
             }
         },
-        created() {
-            /*在created阶段必须触发一个update:selected事件，才能使用户使用时写的 :selected.sync有用，事件的值还不知道，假装是xxx
-                        this.$emit('update:selected', 'xxx')*/
-        },
         //在mounted阶段该组件的所有子组件已经完成挂载
         mounted() {
-            //触发事件，传入当前tab的name，tabs-item和tabs-pane监听，是谁就active谁
-            this.eventBus.$emit('update:selected', this.selected)
+            //首次渲染tabs组件时
+            this.emitUpdateSelected()
+
+        },
+        methods: {
+            //首次渲染tabs组件时
+            emitUpdateSelected () {
+                // 循环该组件实例的子组件（this.$children返回的是数组因此可以用forEach循环）
+                this.$children.forEach((vm) => {
+                    // 如果子组件的name是v-tabs-head，说明该组件是tabs-head组件
+                    if (vm.$options.name === 'v-tabs-head') {
+                        // 循环tabs-head组件的子组件（每一个都是一个tab组件:tabs-item）
+                        vm.$children.forEach((tab) => {
+                            // 如果this.selected(active的tab) === 当前循环到的tab组件的name，说明该tab组件正式当前active的tab组件
+                            if (this.selected === tab.name) {
+                                // 触发事件，传入当前active的name和tab组件实例
+                                this.eventBus.$emit('update:selected', this.selected, tab)
+                            }
+                        })
+                    }
+                })
+            }
         },
         /*只要在provide中创建了事件中心，那么该组件的所有子孙都可以访问到eventBus，provide是唯一一个跨组件都可以调用
                 （所有子孙）的属性，其他的属性都是只能提供给子组件，不提供给孙子。只有provide是任何后代都可以访问的*/
@@ -55,6 +71,5 @@
 
 <style scoped lang="scss">
     .tabs {
-
     }
 </style>

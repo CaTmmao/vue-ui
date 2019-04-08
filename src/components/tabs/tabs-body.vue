@@ -9,7 +9,6 @@
         name: 'v-tabs-body',
         mounted() {
             this.eventBus.$on('update:selected', (name) => {
-                console.log(name)
             })
         },
         //tabs组件中用provide选项提供了eventBus，其他子孙组件需要用inject注入eventBus
@@ -19,6 +18,6 @@
 
 <style scoped lang="scss">
     .tabs-body {
-
+        background: red;
     }
 </style>
