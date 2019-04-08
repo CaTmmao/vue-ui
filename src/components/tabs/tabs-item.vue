@@ -37,10 +37,12 @@
             }
         },
         created() {
-            this.eventBus.$on('update:selected', (name) => {
-                //当name就是当前tab的name时，设置这个tab为active状态
-                this.active = name === this.name
-            })
+            if (this.eventBus) {
+                this.eventBus.$on('update:selected', (name) => {
+                    //当name就是当前tab的name时，设置这个tab为active状态
+                    this.active = name === this.name
+                })
+            }
         },
         methods: {
             emitSelected() {
