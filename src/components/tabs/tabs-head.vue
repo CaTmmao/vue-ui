@@ -39,6 +39,8 @@
         align-items: center;
         position: relative;
         height: 40px;
+        border-bottom: 1px #dcdfe6 solid;
+        box-sizing: content-box;
 
         .line {
             position: absolute;

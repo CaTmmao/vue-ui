@@ -18,6 +18,5 @@
 
 <style scoped lang="scss">
     .tabs-body {
-        background: red;
     }
 </style>
