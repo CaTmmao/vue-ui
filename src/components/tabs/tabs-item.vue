@@ -17,7 +17,8 @@
             itemClass() {
                 return {
                     //this.active为true时，就应用active为class
-                    active: this.active
+                    active: this.active,
+                    disabled: this.disabled
                 }
             }
         },
@@ -43,6 +44,8 @@
         },
         methods: {
             emitSelected() {
+                //如果该tab是disabled状态，不进行后续触发事件
+                if (this.disabled) return
                 this.eventBus.$emit('update:selected', this.name, this)
             }
         }
@@ -60,6 +63,11 @@
         &.active {
             color: #409eff;
             font-weight: bold;
+        }
+
+        &.disabled {
+            color: rgba(0,0,0,0.25);
+            cursor: not-allowed;
         }
     }
 </style>
