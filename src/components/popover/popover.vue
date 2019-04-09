@@ -6,7 +6,7 @@
             <!--name=content,在HTML中对应slot=content的标签-->
             <slot name="content"></slot>
         </div>
-        <span ref="triggerWrapper">
+        <span ref="triggerWrapper" class="triggerWrapper">
             <!--默认的slot，用来做trigger触发pooover，比如放一个button在里面，click / hover / focus触发popover显示上面的content-->
             <slot></slot>
         </span>
@@ -88,14 +88,43 @@
     .popover {
         margin: 100px;
         position: relative;
+
+        .triggerWrapper {
+            display: inline-block;
+        }
     }
 
     //之所以不写在.popover里面是因为content显示在页面中时会被append在body中而不是放在popover中，那样样式无法生效
     .content-wrapper {
         padding: 10px 15px;
+        margin-top: -10px;
         position: absolute;
-        border: 1px red solid;
-        box-shadow: 0 0 0 1px #ddd;
+        border: 1px #333 solid;
+        border-radius: 3px;
+        //用drop-shadow是为了解决box-shadow不会应用&::before三角形的问题 但是这个必须配合background一起写
+        filter: drop-shadow(0 1px 1px #aaa);
+        background: #fff;
         transform: translateY(-100%);
+        max-width: 20em;
+        //自动换行
+        word-wrap: break-word;
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            border: 10px solid transparent;
+            position: absolute;
+            top: 100%;
+        }
+
+        &::before {
+            border-top-color: #333;
+        }
+
+        &::after {
+            border-top-color: #fff;
+            top: calc(100% - 1px);
+        }
     }
 </style>
