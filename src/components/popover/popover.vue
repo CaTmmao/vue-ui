@@ -183,11 +183,13 @@
             transform: translateY(-100%);
 
             &::before {
+                border-bottom: none;
                 border-top-color: #333;
                 top: 100%;
             }
 
             &::after {
+                border-bottom: none;
                 border-top-color: #fff;
                 top: calc(100% - 1px);
             }
@@ -197,11 +199,13 @@
             margin-top: 15px;
 
             &::before {
+                border-top: none;
                 border-bottom-color: #333;
                 bottom: 100%;
             }
 
             &::after {
+                border-top: none;
                 border-bottom-color: #fff;
                 bottom: calc(100% - 1px);
             }
@@ -212,11 +216,13 @@
 
             &::before,
             &::after {
+                border-right: none;
                 top: 50%;
                 transform: translateY(-50%);
             }
 
             &::before {
+                border-right: none;
                 border-left-color: #333;
                 left: 100%;
             }
@@ -232,11 +238,14 @@
 
             &::before,
             &::after {
+                border-left: none;
                 top: 50%;
                 transform: translateY(-50%);
             }
 
             &::before {
+                border-left: none;
+                top: 50%;
                 border-right-color: #333;
                 right: 100%;
             }
