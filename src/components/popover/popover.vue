@@ -1,7 +1,7 @@
 <template>
     <!--用div元素把该组件包裹起来 click事件本来应该写在默认的slot里面，默认的slot用来插入button，但是slot无法添加事件，写在div
     元素上一样-->
-    <div class="popover" @click="triggerVisible">
+    <div class="popover" ref="popover">
         <div class="content-wrapper" ref="contentWrapper" v-if="visible" :class="{[`position-${position}`]: true}">
             <!--name=content,在HTML中对应slot=content的标签-->
             <slot name="content"></slot>
@@ -30,7 +30,35 @@
                 validator(value) {
                     return ['top', 'bottom', 'left', 'right'].includes(value)
                 }
+            },
+            //触发popover的方式
+            trigger: {
+                type: String,
+                default: 'click',
+                validator (value) {
+                    return ['click', 'hover'].includes(value)
+                }
             }
+        },
+        mounted () {
+            //根据用户传入的trigger方式不同而监听的事件也不同
+            if (this.trigger === 'click') {
+                this.$refs.popover.addEventListener('click', this.triggerVisible)
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.showPopover)
+                this.$refs.popover.addEventListener('mouseleave', this.closePopover)
+            }
+        },
+        destroy() {
+            /* 组件销毁时，记得把监听的事件移除掉,如果是在HTML标签上用@click写的监听事件，vue会自动移动，但是这里用的是js自己写的，
+            需要自己移除掉*/
+            if (this.trigger === 'click') {
+                this.$refs.popover.removeEventListener('click', this.triggerVisible)
+            } else {
+                this.$refs.popover.removeEventListener('mouseenter', this.showPopover)
+                this.$refs.popover.removeEventListener('mouseleave', this.closePopover)
+            }
+
         },
         methods: {
             //切换visible的状态
