@@ -4,7 +4,7 @@
     <div class="popover" ref="popover">
         <div class="content-wrapper" ref="contentWrapper" v-if="visible" :class="{[`position-${position}`]: true}">
             <!--name=content,在HTML中对应slot=content的标签-->
-            <slot name="content"></slot>
+            <slot name="content" :close="closePopover"></slot>
         </div>
         <span ref="triggerWrapper" class="triggerWrapper">
             <!--默认的slot，用来做trigger触发pooover，比如放一个button在里面，click / hover / focus触发popover显示上面的content-->
