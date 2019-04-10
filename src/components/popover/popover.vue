@@ -89,21 +89,28 @@
                 //解构赋值中的变量重命名语法，后续用width2获取值
                 let {width: width2, height: height2} = contentWrapper.getBoundingClientRect()
 
-                //默认top
-                //将content内容的位置设置成和triggerWrapper(如button)位置一样
-                contentWrapper.style.left = left + window.scrollX + 'px'
-                contentWrapper.style.top = top + window.scrollY + 'px'
-
-                //如果位置在bottom
-                if (this.position === 'bottom') {
-                    contentWrapper.style.top = top + height + window.scrollY + 'px'
-                } else if (this.position === 'left') {
-                    contentWrapper.style.left = left - width2 + window.scrollX + 'px'
-                    contentWrapper.style.top = top - (Math.abs(height - height2) / 2) + window.scrollY + 'px'
-                } else if (this.position === 'right') {
-                    contentWrapper.style.left = left + width + window.scrollX + 'px'
-                    contentWrapper.style.top = top - (Math.abs(height - height2) / 2) + window.scrollY + 'px'
+                //表驱动编程，给contentWrapper设置位置
+                let positions = {
+                    top: {
+                        left: left + window.scrollX,
+                        top: top + window.scrollY
+                    },
+                    bottom: {
+                        left: left + window.scrollX,
+                        top: top + height + window.scrollY
+                    },
+                    left: {
+                        left: left - width2 + window.scrollX,
+                        top: top - (Math.abs(height - height2) / 2) + window.scrollY
+                    },
+                    right: {
+                        left: left + width + window.scrollX,
+                        top: top - (Math.abs(height - height2) / 2) + window.scrollY
+                    }
                 }
+
+                contentWrapper.style.top = positions[this.position].top + 'px'
+                contentWrapper.style.left = positions[this.position].left + 'px'
             }
         }
     }
