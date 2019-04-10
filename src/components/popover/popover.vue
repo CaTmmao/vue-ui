@@ -2,7 +2,7 @@
     <!--用div元素把该组件包裹起来 click事件本来应该写在默认的slot里面，默认的slot用来插入button，但是slot无法添加事件，写在div
     元素上一样-->
     <div class="popover" @click="triggerVisible">
-        <div class="content-wrapper" ref="contentWrapper" v-if="visible">
+        <div class="content-wrapper" ref="contentWrapper" v-if="visible" :class="{[`position-${position}`]: true}">
             <!--name=content,在HTML中对应slot=content的标签-->
             <slot name="content"></slot>
         </div>
@@ -20,6 +20,16 @@
             return {
                 //针对name为content的slot，默认不可见
                 visible: false
+            }
+        },
+        props: {
+            //content位置
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'bottom', 'left', 'right'].includes(value)
+                }
             }
         },
         methods: {
@@ -70,15 +80,30 @@
             },
             //把content内容移动到button上方
             moveContentPosition () {
+                let {contentWrapper, triggerWrapper} = this.$refs
                 //获取triggerWrapper(button)的位置
-                let {left, top} = this.$refs.triggerWrapper.getBoundingClientRect()
+                let {left, top, height, width} = triggerWrapper.getBoundingClientRect()
 
                 //将ref为contentWrapper的元素移动到body中 移动的元素除了位置改变，其他功能都保留
-                document.body.appendChild(this.$refs.contentWrapper)
+                document.body.appendChild(contentWrapper)
+                //解构赋值中的变量重命名语法，后续用width2获取值
+                let {width: width2, height: height2} = contentWrapper.getBoundingClientRect()
 
+                //默认top
                 //将content内容的位置设置成和triggerWrapper(如button)位置一样
-                this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-                this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+                contentWrapper.style.left = left + window.scrollX + 'px'
+                contentWrapper.style.top = top + window.scrollY + 'px'
+
+                //如果位置在bottom
+                if (this.position === 'bottom') {
+                    contentWrapper.style.top = top + height + window.scrollY + 'px'
+                } else if (this.position === 'left') {
+                    contentWrapper.style.left = left - width2 + window.scrollX + 'px'
+                    contentWrapper.style.top = top - (Math.abs(height - height2) / 2) + window.scrollY + 'px'
+                } else if (this.position === 'right') {
+                    contentWrapper.style.left = left + width + window.scrollX + 'px'
+                    contentWrapper.style.top = top - (Math.abs(height - height2) / 2) + window.scrollY + 'px'
+                }
             }
         }
     }
@@ -86,8 +111,10 @@
 
 <style scoped lang="scss">
     .popover {
-        margin: 100px;
         position: relative;
+        display: inline-block;
+        margin: 200px 50px;
+
 
         .triggerWrapper {
             display: inline-block;
@@ -97,14 +124,12 @@
     //之所以不写在.popover里面是因为content显示在页面中时会被append在body中而不是放在popover中，那样样式无法生效
     .content-wrapper {
         padding: 10px 15px;
-        margin-top: -10px;
         position: absolute;
         border: 1px #333 solid;
         border-radius: 3px;
         //用drop-shadow是为了解决box-shadow不会应用&::before三角形的问题 但是这个必须配合background一起写
         filter: drop-shadow(0 1px 1px #aaa);
         background: #fff;
-        transform: translateY(-100%);
         max-width: 20em;
         //自动换行
         word-wrap: break-word;
@@ -115,16 +140,76 @@
             display: block;
             border: 10px solid transparent;
             position: absolute;
-            top: 100%;
         }
 
-        &::before {
-            border-top-color: #333;
+        //position为top时
+        &.position-top {
+            margin-top: -15px;
+            transform: translateY(-100%);
+
+            &::before {
+                border-top-color: #333;
+                top: 100%;
+            }
+
+            &::after {
+                border-top-color: #fff;
+                top: calc(100% - 1px);
+            }
         }
 
-        &::after {
-            border-top-color: #fff;
-            top: calc(100% - 1px);
+        &.position-bottom {
+            margin-top: 15px;
+
+            &::before {
+                border-bottom-color: #333;
+                bottom: 100%;
+            }
+
+            &::after {
+                border-bottom-color: #fff;
+                bottom: calc(100% - 1px);
+            }
+        }
+
+        &.position-left {
+            margin-left: -15px;
+
+            &::before,
+            &::after {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::before {
+                border-left-color: #333;
+                left: 100%;
+            }
+
+            &::after {
+                border-left-color: #fff;
+                left: calc(100% - 1px);
+            }
+        }
+
+        &.position-right {
+            margin-left: 15px;
+
+            &::before,
+            &::after {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &::before {
+                border-right-color: #333;
+                right: 100%;
+            }
+
+            &::after {
+                border-right-color: #fff;
+                right: calc(100% - 1px);
+            }
         }
     }
 </style>
