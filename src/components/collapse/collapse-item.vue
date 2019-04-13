@@ -1,6 +1,6 @@
 <template>
     <div class="collapse-item">
-        <div class="title" @click="open=!open">
+        <div class="title" @click="toggle">
             {{title}}
         </div>
         <div class="content" v-if="open">
@@ -12,6 +12,7 @@
 <script>
     export default {
         name: 'v-collapse-item',
+        inject: ['eventBus'],
         props: {
             title: {
                 type: String,
@@ -21,6 +22,29 @@
         data() {
             return {
                 open: false
+            }
+        },
+        mounted () {
+            this.eventBus.$on('update:selected', (vm) => {
+                //除了该collapse，关闭其他所有collapse
+                if (this !== vm) {
+                    this.close()
+                }
+            })
+        },
+        methods: {
+            //切换collapse的开关状态
+            toggle () {
+                if (this.open) {
+                    this.open = false
+                } else {
+                    this.open = true
+                    this.eventBus.$emit('update:selected', this)
+                }
+            },
+            //关闭collapse
+            close () {
+                this.open = false
             }
         }
     }
