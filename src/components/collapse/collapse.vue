@@ -8,14 +8,24 @@
     import Vue from 'vue'
     export default {
         name: 'v-collapse',
+        props: {
+            //是否只能同时显示一个collapse内容
+          single: {
+              type: Boolean,
+              default: false
+          }
+        },
         data() {
             return {
                 eventBus: new Vue()
             }
         },
         provide() {
-            return {
-                eventBus: this.eventBus
+            //用户希望同时只显示一个collapse内容时使eventBus有效
+            if (this.single) {
+                return {
+                    eventBus: this.eventBus
+                }
             }
         }
     }
