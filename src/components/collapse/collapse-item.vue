@@ -3,6 +3,7 @@
         <div class="title" @click="toggle">
             {{title}}
         </div>
+        <!--collapse内容-->
         <div class="content" v-if="open">
             <slot></slot>
         </div>
@@ -17,6 +18,9 @@
             title: {
                 type: String,
                 required: true
+            },
+            name: {
+                type: String
             }
         },
         data() {
@@ -25,26 +29,24 @@
             }
         },
         mounted () {
-            this.eventBus && this.eventBus.$on('update:selected', (vm) => {
-                //除了该collapse，关闭其他所有collapse
-                if (this !== vm) {
-                    this.close()
+            //监听collapse更新事件
+            this.eventBus.$on('update:selected', (names) => {
+                //判断当前选中的数组中是否有自己
+                if (names.indexOf(this.name) >= 0) {
+                    this.open = true
+                } else {
+                    this.open = false
                 }
             })
         },
         methods: {
-            //切换collapse的开关状态
+            //切换状态
             toggle () {
-                if (this.open) {
-                    this.open = false
+                if (this.open === true) {
+                    this.eventBus.$emit('remove:selected', this.name)
                 } else {
-                    this.open = true
-                    this.eventBus && this.eventBus.$emit('update:selected', this)
+                    this.eventBus.$emit('add:selected', this.name)
                 }
-            },
-            //关闭collapse
-            close () {
-                this.open = false
             }
         }
     }
@@ -55,6 +57,7 @@
 
         .title {
             margin: -1px;
+            color: red;
             border: 1px solid #ddd;
             padding: 0 8px;
             min-height: 32px;
