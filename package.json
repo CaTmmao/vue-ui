@@ -25,6 +25,7 @@
   "dependencies": {
     "vue": "^2.6.6",
     "vue-hot-reload-api": "^2.3.2",
+    "highlight.js": "^9.15.6",
     "vue-template-compiler": "^2.6.6"
   },
   "devDependencies": {
