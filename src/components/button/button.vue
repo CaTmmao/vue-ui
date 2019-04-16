@@ -43,29 +43,29 @@
 
 <style scoped lang="scss">
     .v-button {
-        /* 使用scss变量  */
-        height: var(--button-height);
-        font-size: var(--font-size);
+        color: #333;
+        height: 32px;
+        font-size: 14px;
         /* button 不要用width固定宽度 用padding制造间隙 */
         padding: 0 1em;
-        border-radius: var(--border-radius);
-        border: 1px solid var(--border-color);
-        background: var(--button-bg);
+        border-radius: 4px;
+        border: 1px solid #999;
+        background: #fff;
         display: inline-flex;
         vertical-align: middle;
         align-items: center;
         justify-content: center;
 
         .v-icon {
-            order: 1;
+            order: 0;
         }
 
         &:hover {
-            border-color: var(--border-color-hover);
+            border-color: #666;
         }
 
         &:active {
-            background-color: var(--button-active-bg);
+            background-color: #eee;
         }
 
         &:focus {
@@ -78,7 +78,7 @@
 
         &.icon-right {
             > .v-icon {
-                order: 2;
+                order: 1;
             }
         }
 

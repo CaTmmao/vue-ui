@@ -1,6 +1,6 @@
 <template>
     <svg class="v-icon">
-        <use :xlink:href=`#i-${name}`></use> <!--xlink:href 前面一定要加冒号，代表是动态绑定-->
+        <use :xlink:href="`#i-${name}`"></use> <!--xlink:href 前面一定要加冒号，代表是动态绑定-->
     </svg>
 </template>
 
