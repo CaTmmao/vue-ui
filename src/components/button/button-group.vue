@@ -9,10 +9,15 @@
     export default {
         name: "v-button-group",
         mounted() {
-            // 循环v-button-group元素的子元素
-            for (let node of this.$el.children) {
-                if (node.nodeName !== 'BUTTON') {
-                    console.warn(`v-button-group里面只能包含v-button标签，你写的是${node.nodeName.toLowerCase()},可能造成css样式混乱`)
+            this.checkChild()
+        },
+        methods: {
+            checkChild () {
+                // 循环v-button-group元素的子元素
+                for (let node of this.$el.children) {
+                    if (node.nodeName !== 'BUTTON') {
+                        console.warn(`v-button-group里面只能包含v-button标签，你写的是${node.nodeName.toLowerCase()},可能造成css样式混乱`)
+                    }
                 }
             }
         }
@@ -35,13 +40,13 @@
             }
 
             &:first-child {
-                border-top-left-radius: var(--border-radius);
-                border-bottom-left-radius: var(--border-radius);
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
             }
 
             &:last-child {
-                border-top-right-radius: var(--border-radius);
-                border-bottom-right-radius: var(--border-radius);
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
             }
 
             &:hover {
