@@ -6,8 +6,8 @@
         </p>
 
         <v-button @click="$toast('点击弹出提示')">上方弹出</v-button>
-        <v-button @click="$toast('点击弹出提示', {position:'middle'})">上方弹出</v-button>
-        <v-button @click="$toast('点击弹出提示', {position:'bottom'})">上方弹出</v-button>
+        <v-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</v-button>
+        <v-button @click="$toast('点击弹出提示', {position:'bottom'})">下面弹出</v-button>
 
         <p>
             <strong>代码</strong>
@@ -178,8 +178,8 @@ methods: {
                 `.trim(),
                 content: `
 <v-button @click="$toast('点击弹出提示')">上方弹出</v-button>
-<v-button @click="$toast('点击弹出提示', {position:'middle'})">上方弹出</v-button>
-<v-button @click="$toast('点击弹出提示', {position:'bottom'})">上方弹出</v-button>
+<v-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</v-button>
+<v-button @click="$toast('点击弹出提示', {position:'bottom'})">下面弹出</v-button>
                 `.trim(),
                 content2: `
 <v-button @click="onClickButton">上方弹出</v-button>
