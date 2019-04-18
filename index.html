@@ -13,97 +13,152 @@
             box-sizing: border-box;
         }
 
-        /*:root 大部分情况代表 html 选择器; IE9以上都兼容*/
-        :root {
-            --button-height: 32px;
-            --button-bg: #fff;
-            --button-active-bg: #eee;
-            --border-radius: 4px;
-            --font-size: 14px;
-            --color: #333;
-            --border-color: #999;
-            --border-color-hover: #666;
-        }
-
         body {
-            font-size: var(--font-size);
+            font-size: 14px;
         }
-
     </style>
 </head>
 <body>
 <div id="app">
+    <!--collapse-->
+    <!--single属性使collapse同时只能展开一个内容 默认为false-->
+    <v-collapse :selected.sync="selectedCollapse" single>
+        <v-collapse-item title="title1" name="0">
+            content1
+        </v-collapse-item>
+        <v-collapse-item title="title2" name="1">
+            content2
+        </v-collapse-item>
+        <v-collapse-item title="title3" name="2">
+            content3
+        </v-collapse-item>
+        {{selectedCollapse}}
+    </v-collapse>
+
+
+    <!--popover组件-->
+    <!--popover组件里面有两个slot插槽，一个用来写内容，一个是触发popover的元素
+    position属性设置popover相对于button的位置-->
+    <v-popover position="bottom">
+        <!--用来写popover的内容-->
+        <template slot="content">
+            <div>test</div>
+        </template>
+        <!--这是一个默认的插槽，因此不用像slot=content那样规定名字
+        作用：用来触发popover的插槽 当click / hover这个button,就显示上面的div，否则隐藏div-->
+        <!--默认插槽不用用template包裹起来-->
+        <v-button>点击弹出popover</v-button>
+    </v-popover>
+
+
+    <!--tabs组件-->
+    <v-tabs :selected.sync="selectedTab">
+        <!-- 上面加了 .sync 修饰符后，等价于下面这行，.sync是一个语法糖
+        当用户点击里面其中一个tab后，就会触发 update:selected事件
+        <v-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
+        <v-tabs-head>
+            <!--根据slot的值添加到head对应的位置上-->
+            <template slot="actions">
+                <button>设置</button>
+            </template>
+            <v-tabs-item name="sports">
+                <v-icon name="setting"></v-icon>
+                运动
+            </v-tabs-item>
+            <v-tabs-item name="food" disabled>吃饭</v-tabs-item>
+        </v-tabs-head>
+        <v-tabs-body>
+            <v-tabs-pane name="sports">运动相关资讯</v-tabs-pane>
+            <v-tabs-pane name="food">吃饭相关资讯</v-tabs-pane>
+        </v-tabs-body>
+    </v-tabs>
+
+
+    <!--toast组件-->
     <button @click="showToast">点击弹出toast</button>
-    <!--&lt;!&ndash;layout布局组件&ndash;&gt;-->
-    <!--<v-layout>-->
-        <!--<v-sider>sider</v-sider>-->
-        <!--<v-layout>-->
-            <!--<v-header>header</v-header>-->
-            <!--<v-content>content</v-content>-->
-            <!--<v-footer>footer</v-footer>-->
-        <!--</v-layout>-->
-    <!--</v-layout>-->
+
+
+    <!--layout布局组件-->
+    <v-layout>
+        <v-sider>sider</v-sider>
+        <v-layout>
+            <v-header>header</v-header>
+            <v-content>content</v-content>
+            <v-footer>footer</v-footer>
+        </v-layout>
+    </v-layout>
+
 
     <!--网格系统组件-->
     <!--gutter是给每个col添加固定的间隔-->
-    <!--<v-row gutter="10">-->
-        <!--<v-col span="8">-->
-            <!--<div class="demo"></div>-->
-        <!--</v-col>-->
-        <!--<v-col span="8">-->
-            <!--<div class="demo"></div>-->
-        <!--</v-col>-->
-        <!--<v-col span="8">-->
-            <!--<div class="demo"></div>-->
-        <!--</v-col>-->
-    <!--</v-row>-->
+    <v-row gutter="10">
+        <v-col span="8">
+            <div class="demo"></div>
+        </v-col>
+        <v-col span="8">
+            <div class="demo"></div>
+        </v-col>
+        <v-col span="8">
+            <div class="demo"></div>
+        </v-col>
+    </v-row>
 
-    <!--<v-row>-->
-        <!--&lt;!&ndash;span默认是移动端样式，要设置其他的设备如ipad,narrowPc,pc等，需要在v-col标签上使用冒号动态添加其他属性&ndash;&gt;-->
-        <!--<v-col span="24" :pc="{span: 12}">-->
-            <!--<div class="demo"></div>-->
-        <!--</v-col>-->
-        <!--<v-col span="24" :pc="{span: 12}">-->
-            <!--<div class="demo"></div>-->
-        <!--</v-col>-->
-    <!--</v-row>-->
+    <v-row>
+        <!--span默认是移动端样式，要设置其他的设备如ipad,narrowPc,pc等，需要在v-col标签上使用冒号动态添加其他属性-->
+        <v-col span="24" :pc="{span: 12}">
+            <div class="demo"></div>
+        </v-col>
+        <v-col span="24" :pc="{span: 12}">
+            <div class="demo"></div>
+        </v-col>
+    </v-row>
 
-    <!--button 组件-->
-    <!--由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
-    <!--<v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>-->
-    <!--<v-button icon="setting" :loading="loading" @click="loading = !loading">-->
-        <!-- 传入一个icon参数，值是setting，代表需要 setting icon -->
-        <!--设置-->
-    <!--</v-button>-->
+
+    <!--button 组件
+    由于要传入的true是一个布尔值，不是字符串，所以前面的loading必须加冒号动态传入，否则传入的只是一个无意义的字符串-->
+    <v-button :loading="loading" @click="loading = !loading" icon-position="right">loading状态</v-button>
+    <v-button icon="setting" :loading="loading" @click="loading = !loading">
+        传入一个icon参数，值是setting，代表需要 setting icon 设置
+    </v-button>
 
     <!--button-group 组件-->
-    <!--<v-button-group>-->
-        <!--<v-button icon="left">上一页</v-button>-->
-        <!--<v-button>更多</v-button>-->
-        <!--<v-button icon="right" icon-position="right">下一页</v-button>-->
-    <!--</v-button-group>-->
-    <!--<v-button icon-position="right" icon="setting">icon在右边</v-button>-->
+    <v-button-group>
+        <v-button icon="left">上一页</v-button>
+        <v-button>更多</v-button>
+        <v-button icon="right" icon-position="right">下一页</v-button>
+    </v-button-group>
+    <v-button icon-position="right" icon="setting">icon在右边</v-button>
+
 
     <!--input 组件-->
-    <!--<v-input content="张三"></v-input>-->
-    <!--不能写成这样，vue的自定义标签不能写成自闭合-->
-    <!--<v-input />-->
-    <!--<v-input content="李四"></v-input>-->
-    <!--传入 disabled 参数可以通过下面两种方式-->
-    <!--<v-input content="李四" disabled></v-input>-->
-    <!--用这种方式传的 true 是一个js变量-->
-    <!--<v-input content="李四" :disabled="true"></v-input>-->
-     <!--HTML 语法 传入的 true 是一个字符串-->
-    <!--<v-input content="李四" disabled="true"></v-input>-->
-    <!--和传入 disabled 时需要注意的一样-->
-    <!--<v-input :readonly="true" content="只读"></v-input>-->
-    <!--<v-input content="error状态" error="举例这是error状态"></v-input>-->
-    <!--这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法-->
-    <!--<v-input content="触发change事件" @changed="inputChange"></v-input>-->
-    <!--<v-input content="触发change事件" @change="inputChange"></v-input>-->
-    <!--<v-input v-model="message"></v-input>-->
-    <!--<div>{{message}}</div>-->
+    <v-input content="张三"></v-input>
 
+    <!--不能写成这样，vue的自定义标签不能写成自闭合-->
+    <v-input/>
+
+    <v-input content="李四"></v-input>
+
+    <!--传入 disabled 参数可以通过下面两种方式-->
+    <v-input content="李四" disabled></v-input>
+
+    <!--用这种方式传的 true 是一个js变量-->
+    <v-input content="李四" :disabled="true"></v-input>
+
+    <!--HTML 语法 传入的 true 是一个字符串-->
+    <v-input content="李四" disabled="true"></v-input>
+
+    <!--和传入 disabled 时需要注意的一样-->
+    <v-input :readonly="true" content="只读"></v-input>
+
+    <v-input content="error状态" error="举例这是error状态"></v-input>
+
+    <!--这里监听的 changed 事件是 vue 的 input组件的 changed事件，当事件被触发，会调用 inputChange 方法-->
+    <v-input content="触发change事件" @changed="inputChange"></v-input>
+    <v-input content="触发change事件" @change="inputChange"></v-input>
+
+    <!--双向绑定-->
+    <v-input v-model="message"></v-input>
+    <div>{{message}}</div>
 </div>
 
 <!--index.html只需要引入一个app.js app.js是我们整个应用程序的入口 在这里面去依赖其他的东西-->
