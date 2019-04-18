@@ -56,6 +56,7 @@
     $red: #f14530;
 
     .wrapper {
+        margin-top: 5px;
         font-size: $font-size;
         display: inline-flex;
         align-items: center;
