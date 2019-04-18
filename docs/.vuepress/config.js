@@ -3,11 +3,12 @@ module.exports = {
     title: 'catmmao-ui',
     description: '一个用于学习vue的UI框架',
     head: [
-        ['link', { rel: 'shortcut icon', type: "image/x-icon", href: `./logo.png` }]
+        ['link', { rel: 'icon', href: '/favicon.png' }]
     ],
     themeConfig: {
-        logo: "./index.png",
+        lastUpdated: 'Last Updated', // 文档更新时间：每个文件git最后提交的时间
         repo: "CaTmmao/vue-ui", // 添加 github 链接
+        logo: '/favicon.png',
         sidebar: [
             //如果是文件夹需要在文件名后面添加一个/
             {
