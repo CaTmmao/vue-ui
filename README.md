@@ -1,14 +1,16 @@
-# 一个 Vue UI 组件
 [![Build Status](https://travis-ci.org/CaTmmao/vue-ui.svg?branch=master)](https://travis-ci.org/CaTmmao/vue-ui)
 <img src="https://img.shields.io/github/license/catmmao/vue-ui.svg">
-<img src="https://img.shields.io/bundlephobia/min/catmmao-test-aaaaa.svg">
-<img src="https://img.shields.io/github/issues/catmmao/vue-ui.svg">
-<img src="https://img.shields.io/github/issues-closed/catmmao/vue-ui.svg">
-<img src="https://img.shields.io/npm/v/catmmao-test-aaaaa.svg">
+<img src="https://img.shields.io/bundlephobia/min/catmmao-vue-ui.svg">
+<img src="https://img.shields.io/npm/v/catmmao-vue-ui.svg">
 <img src="https://img.shields.io/github/last-commit/catmmao/vue-ui.svg">
 
-## 介绍
-这是我在学习 Vue 过程中做的一个 UI 框架，希望对你有用
+### [catmmao-vue-ui 官网](https://catmmao.github.io/vue-ui/)
+
+# catmmao-vue-ui
+
+- 该框架主要目的用于熟悉 Vue，代码尚未完全完工,请不要在生产环境中使用本 UI 框架。
+- 本 UI 框架是基于 Vue 2 实现的。
+- 已发布到npm，可使用 npm / yarn 安装到项目中使用
 
 ## 开始使用
 1.添加 CSS 样式
@@ -16,9 +18,7 @@
 使用本框架前，请在 CSS 中开启 border-box
 
 ```css
-*,
-*::before,
-*::after {
+*,*::before,*::after {
     box-sizing: border-box;
     }
 ```
@@ -27,29 +27,35 @@
 ```
 // 从npm5开始，会自动添加 -S （--save 缩写，会被添加到package.json中），如果是npm5以下版本，请自行添加 -S
 npm i -S catmmao-vue-ui
+
+yarn add catmmao-vue-ui
 ```
 
 3.引入
-```vue
- //引入里面的 button 组件
- import {Button} from 'catmmao-vue-ui'
- 
- //引入 css 文件
- import '../node_modules/catmmao-vue-ui/dist/index.css'
-
-    //注册 button 组件
-    export default {
-        components: {
-            'v-button': Button
-        }
-    }
+- 引入全部组件
+```javascript
+//main.js
+import catmmao from 'catmmao-vue-ui'
+import 'catmmao-vue-ui/dist/index.css'
+Vue.use(catmmao)
 ```
-## 文档
 
-## 提问
+- 按需引入
+```javascript
+//main.js
 
-## 变更记录
+import Vue from 'vue'
 
-## 联系方式
+//只引入该框架的Button组件
+import {Button} from 'catmmao-vue-ui'
+import 'catmmao-vue-ui/dist/index.css'
 
-## 贡献代码
+new Vue({
+  el: "#app",
+  components: {
+    //Button组件将以自定义标签 v-button 使用 
+    "v-button": Button
+  }
+})
+```
+
