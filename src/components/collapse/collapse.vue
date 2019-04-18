@@ -14,7 +14,7 @@
                 type: Boolean,
                 default: false
             },
-            //当前被选中项
+            //当前被选中项 与 item中的name属性做对比
             selected: {
                 type: Array
             }
@@ -71,8 +71,12 @@
 
 <style scoped lang="scss">
     .collapse {
-        border: 1px #ddd solid;
-        border-radius: 4px;
-        margin: 100px;
+        background-color: #f7f7f7;
+        border-radius: 3px;
+        border: 1px solid #dcdee2;
+
+        > div:last-child {
+            border-bottom-color: transparent;
+        }
     }
 </style>

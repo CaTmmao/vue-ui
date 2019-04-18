@@ -34,8 +34,10 @@
                 //判断当前选中的数组中是否有自己
                 if (names.indexOf(this.name) >= 0) {
                     this.open = true
+                    this.$el.classList.add('active')
                 } else {
                     this.open = false
+                    this.$el.classList.remove('active')
                 }
             })
         },
@@ -54,15 +56,23 @@
 
 <style scoped lang="scss">
     .collapse-item {
+        cursor: pointer;
+        border-bottom: 1px #dcdee2 solid;
 
         .title {
+            transition: all .3s ease-in-out;
             margin: -1px;
-            color: red;
-            border: 1px solid #ddd;
+            color: #333;
             padding: 0 8px;
             min-height: 32px;
             display: flex;
             align-items: center;
+        }
+
+        &.active {
+            .content {
+                border-top: 1px #dcdee2 solid;
+            }
         }
 
         &:first-child {
@@ -81,7 +91,9 @@
         }
 
         .content {
-            padding: 8px;
+            color: #515a6e;
+            padding: 10px 16px;
+            background-color: #fff;
         }
     }
 
