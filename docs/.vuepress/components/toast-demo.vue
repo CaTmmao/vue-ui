@@ -177,12 +177,6 @@ methods: {
 }
                 `.trim(),
                 content: `
-//引入toast的plugin文件
-import Plugin from '../../../src/components/plugin'
-import Vue from 'vue'
-Vue.use(Plugin)
-
-//使用
 <v-button @click="$toast('点击弹出提示')">上方弹出</v-button>
 <v-button @click="$toast('点击弹出提示', {position:'middle'})">上方弹出</v-button>
 <v-button @click="$toast('点击弹出提示', {position:'bottom'})">上方弹出</v-button>
