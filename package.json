@@ -6,7 +6,6 @@
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-minify && karma start --single-run ",
-    "prepublishOnly": "npm run build",
     "start": "parcel index.html --no-cache",
     "build": "parcel build index.js --no-minify",
     "docs:dev": "vuepress dev docs",
