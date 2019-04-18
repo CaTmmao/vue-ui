@@ -10,7 +10,7 @@
     "build": "parcel build index.js --no-minify",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "d": "bash depoly.sh"
+    "d": "bash deploy.sh"
   },
   "repository": {
     "type": "git",
