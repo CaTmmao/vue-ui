@@ -16,11 +16,15 @@ import TabsItem from './components/tabs/tabs-item'
 import TabsBody from './components/tabs/tabs-body'
 import TabsHead from './components/tabs/tabs-head'
 import TabsPane from './components/tabs/tabs-pane'
+import Popover from './components/popover/popover'
+import Collapse from './components/collapse/collapse'
+import CollapseItem from './components/collapse/collapse-item'
 
 //通过Vue.use执行plugin里的install方法
 Vue.use(Plugin)
 
 //全局注册button, icon等组件
+Vue.component('v-popover', Popover)
 Vue.component('v-layout', Layout)
 Vue.component('v-tabs', Tabs)
 Vue.component('v-tabs-item', TabsItem)
@@ -37,6 +41,8 @@ Vue.component('v-button-group', ButtonGroup)
 Vue.component('v-input', Input)
 Vue.component('v-row', Row)
 Vue.component('v-col', Col)
+Vue.component('v-collapse', Collapse)
+Vue.component('v-collapse-item', CollapseItem)
 
 new Vue({
     el: '#app',
@@ -44,7 +50,8 @@ new Vue({
         //传给index.html
         loading: true,
         message: 'hi',
-        selectedTab: 'sports'
+        selectedTab: 'sports',
+        selectedCollapse: ['1', '2']
     },
     methods: {
         inputChange(event) {
@@ -56,6 +63,9 @@ new Vue({
             this.$toast('test', {
                 position: 'top'
             })
+        },
+        yyy() {
+            console.log('yyy');
         }
     }
 })
