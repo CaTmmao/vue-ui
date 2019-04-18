@@ -1,5 +1,21 @@
-import Button from './src/components/button/button'
-import ButtonGroup from './src/components/button/button-group'
-import Icon from './src/components/button/icon'
+import {
+    Button, ButtonGroup, Collapse, CollapseItem, Col, Row, Input, Content, Footer,
+    Header, Layout, Sider, Tabs, TabsBody, TabsHead, TabsItem, TabsPane, Toast, Plugin
+} from './src/component'
 
-export {Button, ButtonGroup, Icon}
+const components = [Button, ButtonGroup, Collapse, CollapseItem, Col, Row, Input, Content, Footer,
+    Header, Layout, Sider, Tabs, TabsBody, TabsHead, TabsItem, TabsPane, Toast]
+
+const install = Vue => {
+    components.forEach(component => {
+        component.install(Vue)
+    })
+    Vue.use(Plugin)
+}
+
+export {
+    Button, ButtonGroup, Collapse, CollapseItem, Col, Row, Input, Content, Footer,
+    Header, Layout, Sider, Tabs, TabsBody, TabsHead, TabsItem, TabsPane, Toast, Plugin
+}
+
+export default {install, Plugin}
