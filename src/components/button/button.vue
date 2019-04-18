@@ -5,9 +5,9 @@
         <v-icon v-if="icon && !loading" :name="icon"></v-icon>
         <!--loading 效果 name参数默认是loading-->
         <v-icon class="loading" v-if="loading" name="loading"></v-icon>
-        <span class="text">
+        <div class="text">
             <slot></slot>
-        </span>
+        </div>
     </button>
 </template>
 
@@ -45,7 +45,6 @@
     .v-button {
         color: #333;
         height: 32px;
-        font-size: 14px;
         /* button 不要用width固定宽度 用padding制造间隙 */
         padding: 0 1em;
         border-radius: 4px;
@@ -72,7 +71,7 @@
             outline: none;
         }
 
-        span.text {
+        div.text {
             margin: 0 2px;
         }
 
