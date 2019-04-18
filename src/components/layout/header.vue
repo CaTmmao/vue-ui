@@ -1,11 +1,11 @@
 <template>
-    <div class="header">
+    <div>
         <slot></slot>
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .header {
-
+<script>
+    export default {
+        name: 'v-header',
     }
-</style>
+</script>

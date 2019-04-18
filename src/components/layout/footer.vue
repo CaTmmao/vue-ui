@@ -1,11 +1,10 @@
 <template>
-    <div class="footer">
+    <div>
         <slot></slot>
     </div>
 </template>
-
-<style lang="scss" scoped>
-    .footer {
-
+<script>
+    export default {
+        name: 'v-footer',
     }
-</style>
+</script>

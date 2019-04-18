@@ -1,9 +1,9 @@
 <template>
     <!--vue的transition用来给想要的元素/组件做过渡效果，name是css名-->
     <transition name="slide">
-        <div class="sider" v-if="visible">
+        <div class="layout-sider" v-if="visible">
         <slot></slot>
-            <button @click="visible = false" class="close">close</button>
+            <div @click="visible = false" class="close" v-if="closeButton">X</div>
         </div>
     </transition>
 </template>
@@ -17,6 +17,13 @@
         data() {
             return {
                 visible: true
+            }
+        },
+        props: {
+            //是否显示close button
+            closeButton: {
+                type: Boolean,
+                default: true
             }
         }
     }
@@ -33,14 +40,19 @@
         transition: margin-left .5s;
     }
 
-    .sider {
+    .layout-sider {
         position: relative;
 
         .close {
             position: absolute;
             top: 0;
             right: 0;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
     }
 </style>
