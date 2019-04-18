@@ -28,6 +28,7 @@
             span: {
                 type: [Number, String]
             },
+            //给单个网格设置单独的空隙
             offset: {
                 type: [Number, String]
             },
@@ -96,7 +97,6 @@
 
 <style scoped lang="scss">
     .col {
-        height: 100px;
 
         /*计算每列宽度*/
         /*前缀是 col- */
@@ -106,6 +106,15 @@
         @for $n from 1 through 24 {
             &.#{$class-prefix}#{$n} {
                 width: ($n / 24) * 100%;
+            }
+        }
+
+        /*计算间隔*/
+        /*前缀是 offset 变量可以重复使用*/
+        $class-prefix: offset-;
+        @for $n from 1 through 24 {
+            &.#{$class-prefix}#{$n} {
+                margin-left: ($n / 24) * 100%;
             }
         }
 
@@ -178,15 +187,5 @@
                 }
             }
         }
-
-        /*计算间隔*/
-        /*前缀是 offset 变量可以重复使用*/
-        $class-prefix: offset-;
-        @for $n from 1 through 24 {
-            &.#{$class-prefix}#{$n} {
-                margin-left: ($n / 24) * 100%;
-            }
-        }
-
     }
 </style>

@@ -7,8 +7,9 @@
 
 <script>
     export default {
-        name: "row",
+        name: "v-row",
         props: {
+            //给每个单元格设置相同的gutter
             gutter: {
                 type: [Number, String]
             },
@@ -47,6 +48,7 @@
 
 <style scoped lang="scss">
     .row {
+        margin: 10px 0;
         display: flex;
         //使子元素可以换行
         flex-wrap: wrap;
