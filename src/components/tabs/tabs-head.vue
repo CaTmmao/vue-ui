@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-head">
+    <div class="tabs-head" ref="head">
         <!--所有tabsitem出现在这里-->
         <slot></slot>
         <!--active的tab显示下划线；写ref是为了方便获取到该div元素并设置width和left-->
@@ -29,10 +29,15 @@
                 this.eventBus.$on('update:selected', (name, tab) => {
                     // 获取该tab元素的left width信息
                     let {left, width} = tab.$el.getBoundingClientRect()
+                    //获取该tabs-head的left信息
+                    let {left: left2} = this.$el.getBoundingClientRect()
                     // 将该tabs-head组件refs中的line的width样式设置为当前active tab的width一样
                     this.$refs.line.style.width = `${width}px`
+
                     // 将该tabs-head组件refs中的line的left位置 设置为当前active tab的left一样
-                    this.$refs.line.style.left = `${left}px`
+                    /* 由于line是相对于父元素head进行absolute，因此当left为0时line就位于head最左侧了，
+                    而不是相对于windows视图，所以需要减去head那部分的left才设置的是该元素真正的left */
+                    this.$refs.line.style.left = `${left - left2}px`
                 })
             }
         }
@@ -51,7 +56,7 @@
 
         .line {
             position: absolute;
-            height: 2px;
+            height: 1px;
             background: #409eff;
             bottom: 0;
             transition: all .5s;

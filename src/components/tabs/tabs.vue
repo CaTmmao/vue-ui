@@ -14,14 +14,6 @@
             selected: {
                 type: String,
                 required: true
-            },
-            //tab排列方向：横向/竖向
-            direction: {
-                type: String,
-                default: 'horizontal',
-                validator(value) {
-                    return ['horizontal', 'vertical'].includes(value)
-                }
             }
         },
         data () {
@@ -75,7 +67,3 @@
     }
 </script>
 
-<style scoped lang="scss">
-    .tabs {
-    }
-</style>
