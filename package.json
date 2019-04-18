@@ -9,7 +9,8 @@
     "start": "parcel index.html --no-cache",
     "build": "parcel build index.js --no-minify",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "d": "bash depoly.sh"
   },
   "repository": {
     "type": "git",
