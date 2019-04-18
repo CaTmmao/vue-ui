@@ -1,4 +1,5 @@
 module.exports = {
+    base: '/vue-ui/',
     title: 'catmmao-ui',
     description: '一个用于学习vue的UI框架',
     head: [
