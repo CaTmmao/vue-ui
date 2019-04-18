@@ -12,7 +12,7 @@
             </div>
 
             <!--竖线-->
-            <div class="line" ref="line"></div>
+            <div class="line" ref="line" v-show="closeButton.text"></div>
 
             <!--关闭按钮-->
             <span v-if="closeButton.text" class="close" @click="clickCloseButton">
@@ -179,6 +179,7 @@
 
     //专门用来做居中
     .wrapper {
+        z-index: 1000;
         position: fixed;
         left: 50%;
         transform: translateX(-50%);
