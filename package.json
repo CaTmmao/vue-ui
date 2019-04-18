@@ -1,6 +1,6 @@
 {
   "name": "catmmao-vue-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "一个ui框架",
   "main": "dist/index.js",
   "scripts": {

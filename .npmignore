@@ -1,0 +1,13 @@
+/docs/
+babel.config.js
+index.js
+yarn.lock
+yarn-error.log
+svg.js
+karma.conf.js
+.travis.yml
+.cache
+index.html
+.idea
+/src/
+/test/
