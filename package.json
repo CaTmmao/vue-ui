@@ -1,12 +1,14 @@
 {
   "name": "catmmao-vue-ui",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "一个ui框架",
   "main": "dist/index.js",
   "scripts": {
     "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-minify && karma start --single-run ",
+    "prepublishOnly": "npm run build",
     "start": "parcel index.html --no-cache",
+    "build": "parcel build index.js --no-minify",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
@@ -43,6 +45,11 @@
     "node-sass": "^4.11.0",
     "sinon-chai": "^3.3.0",
     "vuepress": "^0.14.11"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.common.js"
