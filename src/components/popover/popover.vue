@@ -148,8 +148,6 @@
     .popover {
         position: relative;
         display: inline-block;
-        margin: 200px 50px;
-
 
         .triggerWrapper {
             display: inline-block;
