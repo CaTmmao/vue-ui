@@ -6,7 +6,7 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 describe('TabsPane', () => {
-    it('存在.', () => {
-        expect(TabsPane).to.be.ok
-    })
+  it('存在.', () => {
+    expect(TabsPane).to.be.ok
+  })
 })

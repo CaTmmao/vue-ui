@@ -1,17 +1,17 @@
 <template>
-    <div class="layout-content">
-        <slot></slot>
-    </div>
+  <div class="layout-content">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'v-content',
-    }
+export default {
+  name: "v-content"
+};
 </script>
 
 <style lang="scss" scoped>
-    .layout-content {
-        flex-grow: 1;
-    }
+.layout-content {
+  flex-grow: 1;
+}
 </style>

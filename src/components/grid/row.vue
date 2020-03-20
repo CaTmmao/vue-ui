@@ -1,68 +1,69 @@
 <template>
-    <div class="row" :style="rowStyle" :class="rowClass">
-        <slot></slot>
-        <!--插槽：允许div里面插入其他元素 如 col组件 -->
-    </div>
+  <div class="row" :style="rowStyle" :class="rowClass">
+    <slot></slot>
+    <!--插槽：允许div里面插入其他元素 如 col组件 -->
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "v-row",
-        props: {
-            //给每个单元格设置相同的gutter
-            gutter: {
-                type: [Number, String]
-            },
-            align: {
-                type: String,
-                //验证用户传入的align的值
-                validator(value) {
-                    //查看value是否是这三个值
-                    return ['left', 'right', 'center'].includes(value)
-                }
-            }
-        },
-        computed: {
-            rowClass() {
-                //从this中解构赋值出align
-                let {align} = this
-                //返回一个class 前提是有align
-                return [align && `align-${align}`]
-            },
-            //这个属性是根据gutter属性变的。这个不能写在data中，因为data只会在created的时候会读取一次，后续发生变更不会再动态读取
-            rowStyle() {
-                return {
-                    marginLeft: -this.gutter/2 + 'px',
-                    marginRight: -this.gutter/2 + 'px'}
-            }
-        },
-        mounted() {
-            //mounted后，该组件的所有子元素也挂载完毕，可以通过this.$children 获取他们
-            this.$children.forEach((vm) => {
-                //vm代表每一个子元素本身 把row的gutter传递给他
-                vm.gutter = this.gutter
-            })
-        }
+export default {
+  name: "v-row",
+  props: {
+    //给每个单元格设置相同的gutter
+    gutter: {
+      type: [Number, String]
+    },
+    align: {
+      type: String,
+      //验证用户传入的align的值
+      validator(value) {
+        //查看value是否是这三个值
+        return ["left", "right", "center"].includes(value);
+      }
     }
+  },
+  computed: {
+    rowClass() {
+      //从this中解构赋值出align
+      let { align } = this;
+      //返回一个class 前提是有align
+      return [align && `align-${align}`];
+    },
+    //这个属性是根据gutter属性变的。这个不能写在data中，因为data只会在created的时候会读取一次，后续发生变更不会再动态读取
+    rowStyle() {
+      return {
+        marginLeft: -this.gutter / 2 + "px",
+        marginRight: -this.gutter / 2 + "px"
+      };
+    }
+  },
+  mounted() {
+    //mounted后，该组件的所有子元素也挂载完毕，可以通过this.$children 获取他们
+    this.$children.forEach(vm => {
+      //vm代表每一个子元素本身 把row的gutter传递给他
+      vm.gutter = this.gutter;
+    });
+  }
+};
 </script>
 
 <style scoped lang="scss">
-    .row {
-        margin: 10px 0;
-        display: flex;
-        //使子元素可以换行
-        flex-wrap: wrap;
+.row {
+  margin: 10px 0;
+  display: flex;
+  //使子元素可以换行
+  flex-wrap: wrap;
 
-        &.align-left {
-            justify-content: flex-start;
-        }
+  &.align-left {
+    justify-content: flex-start;
+  }
 
-        &.align-right {
-            justify-content: flex-end;
-        }
+  &.align-right {
+    justify-content: flex-end;
+  }
 
-        &.align-center {
-            justify-content: center;
-        }
-    }
+  &.align-center {
+    justify-content: center;
+  }
+}
 </style>
